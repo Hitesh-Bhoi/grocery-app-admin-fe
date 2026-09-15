@@ -1,28 +1,32 @@
-import "@/css/satoshi.css";
-import "@/css/style.css";
-import "flatpickr/dist/flatpickr.min.css";
-import "jsvectormap/dist/jsvectormap.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-import { Providers } from "./providers";
-import NextTopLoader from "nextjs-toploader";
-import { Metadata } from "next";
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
-export const metadata: Metadata= {
-  title: "My Shop",
-  description: "Online plateform for fresh foods",
-  icons: {
-    icon: "/favicon.svg",
-  }
+import { Providers } from "@/providers";
+
+export const metadata: Metadata = {
+  title: "Adminpanel — Grocery & eCommerce Dashboard",
+  description:
+    "Modern production-quality admin dashboard for grocery management, eCommerce, and SaaS analytics.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>
-        <Providers>
-          <NextTopLoader color="#5750F1" showSpinner={false} />
-          {children}
-        </Providers>
+    <html lang="en" className={`${inter.variable} h-full`}>
+      <body
+        className="h-full"
+        style={{ fontFamily: "var(--font-inter), Inter, system-ui, sans-serif" }}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
